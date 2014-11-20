@@ -13,7 +13,7 @@ public class OrangeBlock extends Block {
 	public OrangeBlock() {
 		super(Material.rock);
 		
-		setBlockTextureName(Reference.addPrefix(name));
+		setBlockTextureName(Reference.MODID + ":" + name);
 		setBlockName(Reference.addPrefix(name));//prefix only include the modname_xxx
 		setCreativeTab(CreativeTabs.tabBlock);
 		
