@@ -12,7 +12,8 @@ Setup Forge
 To install this source code for development purposes, extract this zip file.
 
     cd forge_folder_xx
-    gradle.properties << "org.gradle.jvmargs=-Xmx1024M"
+    touch gradle.properties
+    echo "org.gradle.jvmargs=-Xmx1024M" >> gradle.properties
     gradlew setupDevWorkspace
     gradlew eclipse
 
