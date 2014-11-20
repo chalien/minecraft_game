@@ -5,7 +5,7 @@ public class Reference {
 	public static final String VERSION = "0.0.1";
 	public static final String NAME = "Koombea Mod";
 	
-	public static String prefix(String name)
+	public static String addPrefix(String name)
 	{
 		return (MODID + "_" + name).toString();
 	}

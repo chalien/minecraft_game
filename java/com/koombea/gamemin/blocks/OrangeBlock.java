@@ -12,9 +12,12 @@ public class OrangeBlock extends Block {
 
 	public OrangeBlock() {
 		super(Material.rock);
-		setBlockName(Reference.prefix(name));//prefix only include the modname_xxx
+		
+		setBlockTextureName(Reference.addPrefix(name));
+		setBlockName(Reference.addPrefix(name));//prefix only include the modname_xxx
 		setCreativeTab(CreativeTabs.tabBlock);
+		
 		GameRegistry.registerBlock(this, name);
 	}
-
+ 
 }

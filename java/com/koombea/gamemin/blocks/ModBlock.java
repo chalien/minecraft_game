@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 
 public final class ModBlock {
 	
-	public static Block orangeBlock;
+	public static Block orangeBlock, multiBlock;
 	
 	public static void init()
 	{
