@@ -1,0 +1,5 @@
+package com.koombea.gamemin.proxy;
+
+public class CommonProxy {
+
+}
