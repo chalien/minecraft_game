@@ -1,5 +1,6 @@
 package com.koombea.gui;
 import com.koombea.gamemin.lib.Reference;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -21,11 +22,15 @@ public class GuiSmasher extends GuiScreen{
 		this.ySize = 214;
 		this.world = world;
 		this.player = player;
+		System.out.println("EN GUI SMASHER");
+		System.out.println(player.getDisplayName());
+
 	}
 	
     
     @Override
     public void drawScreen(int mouseX, int mouseY, float renderPartialTicks) {
+    	System.out.println("DRAW SCREEN");
         this.mc.getTextureManager().bindTexture(backgroundimage);
         int x = (this.width - xSize) / 2;
         int y = (this.height - ySize) / 2;

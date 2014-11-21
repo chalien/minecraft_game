@@ -11,6 +11,7 @@ public class ItemOrangeFood extends ItemFood {
 
 	public ItemOrangeFood(int heal, float saturation, boolean wolfMeat) {
 		super(heal, saturation, wolfMeat);
+		
 		setTextureName(Reference.MODID + ":" + name);
 		setUnlocalizedName(Reference.addPrefix(name));
 		GameRegistry.registerItem(this, name);

@@ -1,5 +1,8 @@
 package com.koombea.gamemin;
 
+import net.minecraftforge.common.MinecraftForge;
+
+import com.koombea.eventHandlers.OnBoardLauncher;
 import com.koombea.gamemin.blocks.ModBlock;
 import com.koombea.gamemin.items.ModItem;
 import com.koombea.gamemin.lib.Reference;
@@ -29,19 +32,19 @@ public class GameMin {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ModBlock.init();
-		ModItem.init();
-		
+		ModItem.init();	
 	}
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		MinecraftForge.EVENT_BUS.register(new OnBoardLauncher());
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-	
+		
 	}
 }
