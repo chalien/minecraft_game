@@ -1,6 +1,7 @@
 package com.koombea.gamemin;
 
 import com.koombea.gamemin.blocks.ModBlock;
+import com.koombea.gamemin.items.ModItem;
 import com.koombea.gamemin.lib.Reference;
 import com.koombea.gamemin.proxy.CommonProxy;
 import com.koombea.gui.GuiHandler;
@@ -28,6 +29,7 @@ public class GameMin {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ModBlock.init();
+		ModItem.init();
 		
 	}
 	
