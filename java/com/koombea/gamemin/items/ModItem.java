@@ -12,4 +12,4 @@ public class ModItem {
 		orangeItem = new ItemOrange();
 		itemOrangeFood = new ItemOrangeFood(4, 0.3f, false); //food points max:20, saturation , wolfmeat (raw beef) 
 	}
-}
+}	
