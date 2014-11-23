@@ -1,5 +1,8 @@
 package com.koombea.gui;
 import com.koombea.gamemin.lib.Reference;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -30,10 +33,28 @@ public class GuiSmasher extends GuiScreen{
         int x = (this.width - xSize) / 2;
         int y = (this.height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize,  ySize);
+        
+        super.drawScreen(mouseY, mouseY, renderPartialTicks);
     }
 
     @Override
     public boolean doesGuiPauseGame() {
         return false;
+    }
+    
+    @Override
+    public void initGui() {
+		int x = (this.width - xSize) / 2;
+		int y = (this.height - ySize) / 2;
+		
+		this.buttonList.add(new GuiButton(0, this.x +40, this.y +40, 100, 20, "SEND CHAT"));
+    }
+    
+    protected void actionPerformed(GuiButton button) {
+    	switch (button.id) {
+    	case 0: Minecraft.getMinecraft().thePlayer.sendChatMessage("HOLA CHICOS");
+    	break;
+    	default:
+		}
     }
 }
