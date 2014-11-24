@@ -14,6 +14,7 @@ To install this source code for development purposes, extract this zip file.
     cd forge_folder_xx
     touch gradle.properties
     echo "org.gradle.jvmargs=-Xmx1024M" >> gradle.properties
+    ./gradlew setupDecompWorkspace --refresh-dependencies
     ./gradlew setupDevWorkspace
     ./gradlew eclipse
 
