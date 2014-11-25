@@ -1,6 +1,7 @@
 package con.koombea.network.messages;
 
 import con.koombea.GameMain;
+import con.koombea.client.entityProperties.PlayerProperty;
 import con.koombea.constant.GUIs;
 import con.koombea.constant.Reference;
 import net.minecraft.client.Minecraft;
@@ -28,9 +29,9 @@ public class MessageSelectClass implements IMessage{
 
 		public IMessage onMessage(MessageSelectClass message, MessageContext ctx) {
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-			System.out.println("ASHAGSDHJ");
-			System.out.println(player.getDisplayName());
+			PlayerProperty playerProperty = PlayerProperty.get(player);
 			player.openGui(GameMain.instance, GUIs.SELECT_CLASS.ordinal(), player.worldObj, 0, 0, 0);
+
 			return null;
 		}
 		

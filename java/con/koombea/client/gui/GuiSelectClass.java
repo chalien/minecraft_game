@@ -5,14 +5,21 @@ import java.util.List;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import con.koombea.GameMain;
+import con.koombea.client.entityProperties.PlayerProperty;
+import con.koombea.constant.PlayerClasses;
 import con.koombea.constant.Reference;
+import con.koombea.network.messages.MessageSaveSelectedClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.Chat;
 
 public class GuiSelectClass extends GuiScreen{
 	 
@@ -24,7 +31,7 @@ public class GuiSelectClass extends GuiScreen{
 	private World world;
 	private EntityPlayer player;
 	private ResourceLocation backgroundimage =  new ResourceLocation(Reference.MODID.toLowerCase() + ":" + "textures/client/gui/GuiSelectClass.png");
-    
+
 	public GuiSelectClass(EntityPlayer player, World world, int x, int y, int z) {
 		this.x = x;
 		this.y = y;
@@ -55,13 +62,13 @@ public class GuiSelectClass extends GuiScreen{
 		int positionFinalY = this.height / 4;
 	
 		
-		this.buttonList.add(new GuiButton(0,  positionX - positionFinalX, positionY - positionFinalY, 100,  20, Reference.PLAYER_CLASSES[0]));
+		this.buttonList.add(new GuiButton(0,  positionX - positionFinalX, positionY - positionFinalY, 100,  20, PlayerClasses.getLabel(PlayerClasses.SABER)));
 			
-		this.buttonList.add(new GuiButton(0,  positionX + positionFinalX, positionY - positionFinalY, 100, 20, Reference.PLAYER_CLASSES[1]));
+		this.buttonList.add(new GuiButton(0,  positionX + positionFinalX, positionY - positionFinalY, 100, 20, PlayerClasses.getLabel(PlayerClasses.VIKINGS)));
 			
-		this.buttonList.add(new GuiButton(0,  positionX - positionFinalX, positionY + positionFinalY, 100, 20, Reference.PLAYER_CLASSES[2]));
+		this.buttonList.add(new GuiButton(0,  positionX - positionFinalX, positionY + positionFinalY, 100, 20, PlayerClasses.getLabel(PlayerClasses.WIZARD)));
 		
-		this.buttonList.add(new GuiButton(0,  positionX + positionFinalX, positionY + positionFinalY, 100, 20, Reference.PLAYER_CLASSES[3]));
+		this.buttonList.add(new GuiButton(0,  positionX + positionFinalX, positionY + positionFinalY, 100, 20, PlayerClasses.getLabel(PlayerClasses.ARCHER)));
 		
 	}
 
@@ -69,7 +76,17 @@ public class GuiSelectClass extends GuiScreen{
 	protected void actionPerformed(GuiButton button) {
 		switch (button.id) {
 		case 0:
-			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ button.displayString);
+			 PlayerProperty playerProperty = PlayerProperty.get(this.player);
+			 playerProperty.setSelectedClass(PlayerClasses.get(button.displayString).ordinal());
+
+		
+			 //save into server with a message
+			 NBTTagCompound property = new NBTTagCompound();
+			 property.setString("ClassName", button.displayString);
+			 playerProperty.saveNBTData(property);
+			 GameMain.wrapper.sendToServer( new MessageSaveSelectedClass(property) );
+			 	
+			 //close gui
 			 this.mc.displayGuiScreen((GuiScreen)null);
 			break;
 		default:
