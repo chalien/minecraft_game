@@ -1,15 +1,10 @@
-package com.koombea.eventHandlers;
+package con.koombea.init;
 
+import con.koombea.event.PlayerTracker;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EventRegister {
-
 	public static void init()
-	{
-		addEventHandler( new PlayerTracker() );
-	}
-	
-	public static void addEventHandler(GameMinEventHandler eventHandler)
 	{
 		FMLCommonHandler.instance().bus().register(new PlayerTracker());
 	}
