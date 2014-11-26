@@ -2,6 +2,8 @@ package con.koombea.event;
 
  
 
+import org.lwjgl.Sys;
+
 import con.koombea.GameMain;
 import con.koombea.client.entityProperties.PlayerProperty;
 import con.koombea.network.messages.MessageSelectClass;
@@ -27,14 +29,21 @@ public class PlayerTracker {
  
 	
 	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event)
+	public void onEntityJoinWorld(EntityConstructing event)
 	{	
 		if (event.entity instanceof EntityPlayer && PlayerProperty.get((EntityPlayer) event.entity) == null)
 		{
-			System.out.println("REGISTRAR");
 			PlayerProperty.register((EntityPlayer) event.entity);
-		} 
+			System.out.println("SIN CARGADO");
+			System.out.println(event.entity.getClass());
+			
+		}
 	
+		if (event.entity instanceof EntityPlayer && PlayerProperty.get((EntityPlayer) event.entity) != null)
+		{
+			System.out.println("ALGUIEN ESTA CARGADO");
+			System.out.println(event.entity.getClass());
+		}
 	}
 
 }

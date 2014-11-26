@@ -31,6 +31,7 @@ public class MessageSelectClass implements IMessage{
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 			
 			PlayerProperty playerProperty = PlayerProperty.get(player);
+			
 			System.out.println("TEST!!!!!!");
 			System.out.println(playerProperty.selectedClass());
 			if(playerProperty.selectedClass()==0){

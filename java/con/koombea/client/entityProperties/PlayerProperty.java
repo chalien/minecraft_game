@@ -10,18 +10,20 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 public class PlayerProperty implements IExtendedEntityProperties{
 	
 	public final static String EXT_PROP_NAME = "PlayerProperty";
-	private final EntityPlayer player;
+	private  EntityPlayer player;
 	private int selectedClass;
 	
 	public PlayerProperty(EntityPlayer player) {
+		System.out.println("PASO POR AQUI");
+
 		this.player = player;
-		selectedClass = 0;
 	}
 	
 	public void selectClass(PlayerClasses playerClass)
 	{
 		System.out.println("LLEGO HASTA EL SELECT CLASS");
 		this.selectedClass = playerClass.ordinal();
+		
 	}
 
 	public  int selectedClass()
@@ -41,21 +43,25 @@ public class PlayerProperty implements IExtendedEntityProperties{
 
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = new NBTTagCompound();
-		properties.setInteger("SelectClass", this.selectedClass);
-		compound.setTag(EXT_PROP_NAME, properties);
+		System.out.println("LLEGO AL SAVE");
+		System.out.println(this.player.getDisplayName());
+		PlayerProperty playerProperty = PlayerProperty.get(this.player);
+		
+		System.out.println("LLEGO valor" + playerProperty.selectedClass);
+		compound.setInteger("selectedClass", playerProperty.selectedClass);
 	}
 	
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		this.selectedClass = properties.getInteger("SelectClass");
+		System.out.println("LLEGO AL LOAD");
+		System.out.println(this.player.getDisplayName());
+		this.selectedClass = compound.getInteger("selectedClass");
+		System.out.println("LLEGO valor" + this.selectedClass);
 	}
 
 	@Override
 	public void init(Entity entity, World world) {
-		// TODO Auto-generated method stub
-		
+		this.selectedClass = 0;
 	} 
 
 }

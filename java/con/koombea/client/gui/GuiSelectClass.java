@@ -71,13 +71,21 @@ public class GuiSelectClass extends GuiScreen{
 	protected void actionPerformed(GuiButton button) {
 		switch (button.id) {
 		case 0:
+			System.out.println("CARGAR EL PROPERTY");
 			 PlayerProperty playerProperty = PlayerProperty.get(this.player);
 			 
 			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ button.displayString);
-			 System.out.println("AQUIII" + PlayerClasses.get(button.displayString) .ordinal());
-			 playerProperty.selectClass( PlayerClasses.get(button.displayString) );
-			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ playerProperty.selectedClass());
+			 System.out.println("AQUIII" + PlayerClasses.get(button.displayString).ordinal());
+			 System.out.println(PlayerClasses.get(button.displayString));
 			 
+			
+			 
+			 System.out.println("SET VALUE");
+			 playerProperty.selectClass( PlayerClasses.get(button.displayString) );
+			 System.out.println("FIN SET VALUE");
+			 
+			 
+			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ playerProperty.selectedClass());
 			 this.mc.displayGuiScreen((GuiScreen)null);
 			break;
 		default:
