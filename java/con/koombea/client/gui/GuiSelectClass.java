@@ -85,7 +85,7 @@ public class GuiSelectClass extends GuiScreen{
 			 System.out.println("FIN SET VALUE");
 			 
 			 
-			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ playerProperty.selectedClass());
+			 Minecraft.getMinecraft().thePlayer.sendChatMessage("ELEGISTE "+ playerProperty.getSelectedClass());
 			 this.mc.displayGuiScreen((GuiScreen)null);
 			break;
 		default:

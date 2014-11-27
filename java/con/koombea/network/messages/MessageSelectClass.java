@@ -29,13 +29,14 @@ public class MessageSelectClass implements IMessage{
 
 		public IMessage onMessage(MessageSelectClass message, MessageContext ctx) {
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-			
+ 
 			PlayerProperty playerProperty = PlayerProperty.get(player);
 			
 			System.out.println("TEST!!!!!!");
-			System.out.println(playerProperty.selectedClass());
-			if(playerProperty.selectedClass()==0){
-				player.openGui(GameMain.instance, GUIs.SELECT_CLASS.ordinal(), player.worldObj, 0, 0, 0);
+			System.out.println(playerProperty.getSelectedClass());
+			player.openGui(GameMain.instance, GUIs.SELECT_CLASS.ordinal(), player.worldObj, 0, 0, 0);
+			if(playerProperty.getSelectedClass()==0){
+//				player.openGui(GameMain.instance, GUIs.SELECT_CLASS.ordinal(), player.worldObj, 0, 0, 0);
 			}
 
 			return null;
