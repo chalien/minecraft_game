@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import con.koombea.constant.*;
 import con.koombea.init.Blocks;
 import con.koombea.init.EventRegister;
@@ -15,6 +16,7 @@ import con.koombea.init.ItemsInit;
 import con.koombea.init.MessagesRegister;
 import con.koombea.network.CommonProxy;
 import con.koombea.network.GuiHandler;
+import con.koombea.world.gen.WorldCHGeneration;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class GameMain {
@@ -34,6 +36,7 @@ public class GameMain {
 		createNetworkWrapper();
 		MessagesRegister.init();
 		
+		
 	}
 	
 	@Mod.EventHandler
@@ -41,6 +44,7 @@ public class GameMain {
 	{
 		SubscribeGuiHandler();
 		EventRegister.init();
+		GameRegistry.registerWorldGenerator(new WorldCHGeneration(), 1);
 	}
 	
 	@Mod.EventHandler
